@@ -80,6 +80,7 @@
 			if( !file_exists( $pageFile ) ){
 				header("HTTP/1.1 404 Not Found");
 				$meta->set('title','Not Found');
+				$meta->set('page_heading','Not Found');
 			}else{
 				$allOk=true;
 			}
