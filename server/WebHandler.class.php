@@ -72,8 +72,9 @@
 		function handlePageRequest( $url ){
 			$pageFile = $this->path.$url;
 			$meta = new PageMeta( $pageFile );
-			$meta->set('title','Welcome');
-			
+			if($meta->get('title')==""){
+				$meta->set('title','Welcome');
+			}
 			$template = $this->templatePath.$this->template."/frame.php";
 			$allOk = false;
 			
