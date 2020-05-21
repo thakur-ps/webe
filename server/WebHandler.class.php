@@ -65,7 +65,14 @@
 				exit;
 			}
 			
+			if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && 
+    				strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) >= filemtime($file)){
+    			header('HTTP/1.0 304 Not Modified');
+    			exit;
+			}
+			
 			header( "Content-Type:".mime_content_type($file));
+			header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($file)).' GMT');
 			readfile( $file );
 		}
 		
